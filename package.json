@@ -6,6 +6,7 @@
   "author": "Ahmed Alsaab",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.0",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "node-cron": "^2.0.3",

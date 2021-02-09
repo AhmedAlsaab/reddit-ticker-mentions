@@ -1,5 +1,7 @@
 const snoowrap = require('snoowrap');
 const secrets = require('../secret');
+const chalk = require('chalk');
+const report = require('./build-report');
 
 async function client() {
   const r = new snoowrap({
@@ -27,7 +29,11 @@ async function getMentionedStockTickers(subRedditsToLookThrough) {
         if (!alreadyScannedPostIds.includes(newPost.id)) {
           const getTicker = await newPost.title.match(/\$([A-Z])\w+/g)[0];
 
-          console.log(`Found a mention of: ${getTicker}`);
+          console.log(
+            chalk.green(
+              await report.buildLogMessage(`FOUND A NEW MENTION: ${getTicker}`)
+            )
+          );
 
           tickersMentioned.push(getTicker);
 

@@ -1,7 +1,7 @@
 const reddit = require('./utils/fetch-data');
 const report = require('./utils/build-report');
-const moment = require('moment');
 const cron = require('node-cron');
+const chalk = require('chalk');
 
 async function runApp() {
   const subReditsToScan = [
@@ -21,7 +21,8 @@ async function runApp() {
 
 async function startJob() {
   cron.schedule('* * * * *', async () => {
-    console.log(`[Starting Check...] :: [${moment().format('h:mm:ss a')}]`);
+    console.log(chalk.blue(await report.buildLogMessage(`CHECKING...`)));
+
     await runApp();
   });
 }
